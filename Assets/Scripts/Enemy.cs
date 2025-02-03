@@ -44,6 +44,8 @@ public class Enemy : MonoBehaviour
             // Pick a random direction (up, down, left, right, or stop)
             movementDirection = GetRandomDirection();
 
+
+
             // Move for 2 seconds
             yield return new WaitForSeconds(2f);
 
@@ -164,5 +166,30 @@ public class Enemy : MonoBehaviour
         if (direction == Vector2.left)
             return leftIdle;
         return rightIdle;
+    }
+
+    bool IsPathClear(Vector2 direction)
+    {
+        Vector3 origin = transform.position;
+        RaycastHit2D hit = new RaycastHit2D();
+
+        if (direction == Vector2.up)
+        {
+            hit = Physics2D.Raycast(origin, Vector2.up, 1f, ~LayerMask.GetMask("Enemy"));
+
+        } else if (direction == Vector2.down)
+        {
+            hit = Physics2D.Raycast(origin, Vector2.down, 1f, ~LayerMask.GetMask("Enemy"));
+
+        } else if (direction == Vector2.left)
+        {
+            hit = Physics2D.Raycast(origin, Vector2.left, 1f, ~LayerMask.GetMask("Enemy"));
+        } else if(direction == Vector2.right)
+        {
+            hit = Physics2D.Raycast(origin, Vector2.right, 1f, ~LayerMask.GetMask("Enemy"));
+        }
+
+        // Return true if no obstacle was hit
+        return (hit.collider == null);
     }
 }
