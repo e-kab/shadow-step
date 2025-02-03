@@ -43,7 +43,6 @@ public class Enemy : MonoBehaviour
         frameTimer = (1f / framesPerSecond);
         currentFrameIndex = 0;
 
-        Invoke("Die", 5f); // For testing: will call Death() after 5 seconds
     }
 
     void Update()
@@ -180,23 +179,26 @@ public class Enemy : MonoBehaviour
         Vector3 origin = transform.position;
         RaycastHit2D hit = new RaycastHit2D();
 
+        // Create a layer mask that ignores both "Enemy" and "Player" layers
+        int ignoreLayers = ~LayerMask.GetMask("Enemy", "Player");
+
         if (direction == Vector2.up)
         {
-            hit = Physics2D.Raycast(origin, Vector2.up, 0.55f, ~LayerMask.GetMask("Enemy"));
+            hit = Physics2D.Raycast(origin, Vector2.up, 0.55f, ignoreLayers);
 
         }
         else if (direction == Vector2.down)
         {
-            hit = Physics2D.Raycast(origin, Vector2.down, 0.55f, ~LayerMask.GetMask("Enemy"));
+            hit = Physics2D.Raycast(origin, Vector2.down, 0.55f, ignoreLayers);
 
         }
         else if (direction == Vector2.left)
         {
-            hit = Physics2D.Raycast(origin, Vector2.left, 0.5f, ~LayerMask.GetMask("Enemy"));
+            hit = Physics2D.Raycast(origin, Vector2.left, 0.5f, ignoreLayers);
         }
         else if (direction == Vector2.right)
         {
-            hit = Physics2D.Raycast(origin, Vector2.right, 0.5f, ~LayerMask.GetMask("Enemy"));
+            hit = Physics2D.Raycast(origin, Vector2.right, 0.5f, ignoreLayers);
         }
 
         // Return true if no obstacle was hit
