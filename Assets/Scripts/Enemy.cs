@@ -34,6 +34,7 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         HandleAnimation();
+        Detect();
     }
 
     IEnumerator NPCMovementRoutine()
