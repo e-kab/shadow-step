@@ -122,7 +122,14 @@ MonoBehaviour:
   - {fileID: -8478519636325553, guid: 6c0d6336336b49247a0900cd1e3af2e7, type: 3}
   - {fileID: 2649586297316083229, guid: cf2e3054fa9862c4d90b04dc6ca8b927, type: 3}
   framesPerSecond: 5
-  deathFrames: []
+  deathFrames:
+  - {fileID: 2982189562524479146, guid: e5d8974926ffadd45848b685f0d144da, type: 3}
+  - {fileID: -6730131286670488311, guid: d1d5570c76999f64abeb1bea364bc612, type: 3}
+  - {fileID: -8550779960852004606, guid: 801b1294458fe674ba3c5623201e8c7b, type: 3}
+  - {fileID: -5675273186882786596, guid: 46acf631ff2215744b12e2d7e42d7fb2, type: 3}
+  - {fileID: -3702785633587652229, guid: 275b0d7fa7c42534c912d6c0e5a114a6, type: 3}
+  - {fileID: 7358458828281142589, guid: 9c83372d6bdaaad4faa0bbd68f068df3, type: 3}
+  - {fileID: -5779438652685621586, guid: c7e8a06386ce9d745ab7819034330893, type: 3}
 --- !u!50 &-9166975133467137506
 Rigidbody2D:
   serializedVersion: 5
