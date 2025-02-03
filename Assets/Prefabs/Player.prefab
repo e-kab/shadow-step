@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6790453499102688123}
   - component: {fileID: -7589720663094264678}
   - component: {fileID: 3801133219298061417}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,6 +176,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  inputLeft: 276
+  inputRight: 275
+  inputUp: 273
+  inputDown: 274
+  placeBomb: 304
   upIdle: {fileID: -8525068094996987390, guid: e08c98d3df520db45a612283e3fc4c0d, type: 3}
   downIdle: {fileID: 842091934053780704, guid: 4bb8f5162bad45c4382ca8f3b33454b9, type: 3}
   leftIdle: {fileID: 271334803333840689, guid: 31d3492237ab707489d649ae95e61645, type: 3}

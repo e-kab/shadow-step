@@ -55,11 +55,21 @@ public class Enemy : MonoBehaviour
         else
         {
             HandleAnimation();
+            HandleFlashlight(lastDirection);
         }
     }
 
-    void HandleFlashlight()
+    void HandleFlashlight(Vector2 direction)
     {
+        Vector3 origin = transform.position;
+        RaycastHit2D hit = new RaycastHit2D();
+
+        hit = Physics2D.Raycast(origin, direction, 1f, LayerMask.GetMask("Player"));
+
+        if (hit .collider != null)
+        {
+            Debug.Log("Player Spotted");
+        }
 
     }
 
