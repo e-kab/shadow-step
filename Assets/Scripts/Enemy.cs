@@ -63,6 +63,17 @@ public class Enemy : MonoBehaviour
             direction.Normalize();
         }
         rb2d.linearVelocity = direction * speed;
+
+        // Set sprite based on movement
+        if (direction.magnitude > 0)
+        {
+            spriteRenderer.sprite = GetAnimationFrame(lastDirection);
+        }
+        else
+        {
+            // If not moving, set to idle frame
+            spriteRenderer.sprite = GetIdleSprite(lastDirection);
+        }
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -77,5 +88,34 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         HandleMovement();
+    }
+
+    Sprite GetAnimationFrame(Vector2 direction)
+    {
+        Sprite[] frames;
+        if (direction == Vector2.up)
+            frames = upFrames;
+        else if (direction == Vector2.down)
+            frames = downFrames;
+        else if (direction == Vector2.left)
+            frames = leftFrames;
+        else
+            frames = rightFrames;
+
+        int index = (int)(Time.time * framesPerSecond) % frames.Length;
+        return frames[index];
+
+
+    }
+
+    Sprite GetIdleSprite(Vector2 direction)
+    {
+        if (direction == Vector2.up)
+            return upIdle;
+        if (direction == Vector2.down)
+            return downIdle;
+        if (direction == Vector2.left)
+            return leftIdle;
+        return rightIdle;
     }
 }
