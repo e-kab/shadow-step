@@ -26,9 +26,9 @@ public class Enemy : MonoBehaviour
     public Sprite[] downFrames;
     public Sprite[] leftFrames;
     public Sprite[] rightFrames;
-    
+    public float framesPerSecond = 5;
 
-
+    private Vector2 lastDirection = Vector2.down;
     void HandleMovement()
     {
         float inputX = 0;
@@ -37,24 +37,24 @@ public class Enemy : MonoBehaviour
         if (Input.GetKey(inputUp))
         {
             inputY = 1;
-            spriteRenderer.sprite = upIdle;
+            lastDirection = Vector2.up;
 
         }
         if (Input.GetKey(inputDown))
         {
             inputY = -1;
-            spriteRenderer.sprite = downIdle;
+            lastDirection = Vector2.down;
 
         }
         if (Input.GetKey(inputLeft))
         {
             inputX = -1;
-            spriteRenderer.sprite = leftIdle;
+            lastDirection = Vector2.left;
         }
         if (Input.GetKey(inputRight))
         {
             inputX = 1;
-            spriteRenderer.sprite = rightIdle;
+            lastDirection = Vector2.right;
         }
 
         Vector2 direction = new Vector2(inputX, inputY);
