@@ -1,7 +1,5 @@
 using UnityEngine;
 using System.Collections;
-using UnityEngine.UIElements;
-using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 public class Enemy : MonoBehaviour
 {
@@ -23,13 +21,11 @@ public class Enemy : MonoBehaviour
     
     
     public float framesPerSecond = 5;
-    int currentFrameIndex = 0;
-    float frameTimer;
-
-    public Sprite[] deathFrames;
 
     private Vector2 movementDirection = Vector2.zero;
     private Vector2 lastDirection = Vector2.down; // Default facing direction
+
+    private bool isDead = false;
 
     void Start()
     {
@@ -37,9 +33,7 @@ public class Enemy : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         StartCoroutine(NPCMovementRoutine());
 
-        frameTimer = (1f / framesPerSecond);
-        currentFrameIndex = 0;
-        Invoke("Death", 2f);
+        Invoke("Death", 5f); // For testing: will call Death() after 5 seconds
     }
 
     void Update()
@@ -66,7 +60,6 @@ public class Enemy : MonoBehaviour
                 if (!IsPathClear(movementDirection))
                 {
                     movementDirection = Vector2.zero;
-                    Death();
                     break; // Stop moving if path is blocked
                 }
                 timeElapsed += Time.deltaTime;
@@ -219,15 +212,7 @@ public class Enemy : MonoBehaviour
     }
     public void Death()
     {
-        if (currentFrameIndex < deathFrames.Length)
-        {
-            spriteRenderer.sprite = deathFrames[currentFrameIndex];
-            frameTimer = (1f / framesPerSecond); // Set the timer for the next frame
-        }
-        else
-        {
-            // In case Death is called after all frames are played
-            Destroy(gameObject);
-        }
+        isDead = true;
+        Destroy(gameObject);
     }
 }
