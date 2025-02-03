@@ -1,19 +1,11 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class Enemy : MonoBehaviour
 {
     public float speed = 5;
     Rigidbody2D rb2d;
     SpriteRenderer spriteRenderer;
-
-
-    public KeyCode inputLeft = KeyCode.LeftArrow;
-    public KeyCode inputRight = KeyCode.RightArrow;
-    public KeyCode inputUp = KeyCode.UpArrow;
-    public KeyCode inputDown = KeyCode.DownArrow;
-    public KeyCode placeBomb = KeyCode.LeftShift;
-
 
     // Idle frames
     public Sprite upIdle;
@@ -28,66 +20,63 @@ public class Enemy : MonoBehaviour
     public Sprite[] rightFrames;
     public float framesPerSecond = 5;
 
-    private Vector2 lastDirection = Vector2.down;
-    void HandleMovement()
-    {
-        float inputX = 0;
-        float inputY = 0;
+    private Vector2 movementDirection = Vector2.zero;
+    private Vector2 lastDirection = Vector2.down; // Default facing direction
 
-        if (Input.GetKey(inputUp))
-        {
-            inputY = 1;
-            lastDirection = Vector2.up;
-
-        }
-        if (Input.GetKey(inputDown))
-        {
-            inputY = -1;
-            lastDirection = Vector2.down;
-
-        }
-        if (Input.GetKey(inputLeft))
-        {
-            inputX = -1;
-            lastDirection = Vector2.left;
-        }
-        if (Input.GetKey(inputRight))
-        {
-            inputX = 1;
-            lastDirection = Vector2.right;
-        }
-
-        Vector2 direction = new Vector2(inputX, inputY);
-        if (direction.magnitude > 1)
-        {
-            direction.Normalize();
-        }
-        rb2d.linearVelocity = direction * speed;
-
-        // Set sprite based on movement
-        if (direction.magnitude > 0)
-        {
-            spriteRenderer.sprite = GetAnimationFrame(lastDirection);
-        }
-        else
-        {
-            // If not moving, set to idle frame
-            spriteRenderer.sprite = GetIdleSprite(lastDirection);
-        }
-    }
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-
+        StartCoroutine(NPCMovementRoutine());
     }
 
-    // Update is called once per frame
     void Update()
     {
-        HandleMovement();
+        HandleAnimation();
+    }
+
+    IEnumerator NPCMovementRoutine()
+    {
+        while (true)
+        {
+            // Pick a random direction (up, down, left, right, or stop)
+            movementDirection = GetRandomDirection();
+
+            // Move for 2 seconds
+            yield return new WaitForSeconds(2f);
+
+            // Stop moving for 2 seconds (idle)
+            movementDirection = Vector2.zero;
+            yield return new WaitForSeconds(2f);
+        }
+    }
+
+    Vector2 GetRandomDirection()
+    {
+        int rand = Random.Range(0, 4);
+        switch (rand)
+        {
+            case 0: return Vector2.up;
+            case 1: return Vector2.down;
+            case 2: return Vector2.left;
+            case 3: return Vector2.right;
+            default: return Vector2.zero;
+        }
+    }
+
+    void HandleAnimation()
+    {
+        rb2d.linearVelocity = movementDirection * speed;
+
+        if (movementDirection != Vector2.zero)
+        {
+            lastDirection = movementDirection;
+            spriteRenderer.sprite = GetAnimationFrame(lastDirection);
+        }
+        else
+        {
+            spriteRenderer.sprite = GetIdleSprite(lastDirection);
+        }
     }
 
     Sprite GetAnimationFrame(Vector2 direction)
@@ -104,8 +93,6 @@ public class Enemy : MonoBehaviour
 
         int index = (int)(Time.time * framesPerSecond) % frames.Length;
         return frames[index];
-
-
     }
 
     Sprite GetIdleSprite(Vector2 direction)
