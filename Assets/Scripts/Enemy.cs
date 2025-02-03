@@ -21,6 +21,8 @@ public class Enemy : MonoBehaviour
     public Sprite[] rightFrames;
     public float framesPerSecond = 5;
 
+    public Sprite[] deathFrames;
+
     private Vector2 movementDirection = Vector2.zero;
     private Vector2 lastDirection = Vector2.down; // Default facing direction
 
@@ -203,5 +205,10 @@ public class Enemy : MonoBehaviour
 
         // Return true if no obstacle was hit
         return (hit.collider == null);
+    }
+
+    public void Death()
+    {
+
     }
 }
