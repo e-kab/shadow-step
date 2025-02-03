@@ -45,10 +45,10 @@ public class Enemy : MonoBehaviour
         // Add a LineRenderer component if not already attached
         flashlight = gameObject.AddComponent<LineRenderer>();
         flashlight.startWidth = 0.05f; // Thin beam
-        flashlight.endWidth = 0.05f;
+        flashlight.endWidth = 0.5f;
         flashlight.positionCount = 2; // Start and end points
         flashlight.material = new Material(Shader.Find("Sprites/Default")); // Use basic sprite shader
-        flashlight.startColor = Color.yellow;
+        flashlight.startColor = Color.red;
         flashlight.endColor = new Color(1f, 1f, 0f, 0.5f); // Fades slightly
 
         movementCoroutine = StartCoroutine(NPCMovementRoutine());  // Start movement routine
@@ -81,7 +81,7 @@ public class Enemy : MonoBehaviour
 
         hit = Physics2D.Raycast(origin, direction, flashlightLength, ~LayerMask.GetMask("Enemy"));
 
-        if (hit .collider != null)
+        if (hit.collider != null)
         {
             endPoint = hit.point; // Shrink flashlight if it hits something
         }
@@ -212,7 +212,7 @@ public class Enemy : MonoBehaviour
             hit = Physics2D.Raycast(origin, Vector2.down, 0.55f, ignoreLayers);
 
         }
-        else if (direction == Vector2.left) 
+        else if (direction == Vector2.left)
         {
             hit = Physics2D.Raycast(origin, Vector2.left, 0.5f, ignoreLayers);
         }
