@@ -116,7 +116,7 @@ public class Player : MonoBehaviour
         // Check if the collided object is on the "Enemy" layer
         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            Destroy(collision.gameObject);  // Destroy the enemy
+            collision.GetComponent<Enemy>().Die();
         }
     }
 }
