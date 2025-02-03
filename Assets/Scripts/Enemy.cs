@@ -14,12 +14,11 @@ public class Enemy : MonoBehaviour
     public KeyCode inputDown = KeyCode.DownArrow;
     public KeyCode placeBomb = KeyCode.LeftShift;
 
+    public Sprite upIdle;
+    public Sprite downIdle;
+    public Sprite leftIdle;
+    public Sprite rightIdle;
 
-    public GameObject bombPrefab;
-
-    public Sprite spriteUp;
-    public Sprite spriteDown;
-    public Sprite spriteSide;
 
     void HandleMovement()
     {
@@ -29,26 +28,24 @@ public class Enemy : MonoBehaviour
         if (Input.GetKey(inputUp))
         {
             inputY = 1;
-            spriteRenderer.sprite = spriteUp;
+            spriteRenderer.sprite = upIdle;
 
         }
         if (Input.GetKey(inputDown))
         {
             inputY = -1;
-            spriteRenderer.sprite = spriteDown;
+            spriteRenderer.sprite = downIdle;
 
         }
         if (Input.GetKey(inputLeft))
         {
             inputX = -1;
-            spriteRenderer.sprite = spriteSide;
-            spriteRenderer.flipX = true;
+            spriteRenderer.sprite = leftIdle;
         }
         if (Input.GetKey(inputRight))
         {
             inputX = 1;
-            spriteRenderer.sprite = spriteSide;
-            spriteRenderer.flipX = false;
+            spriteRenderer.sprite = rightIdle;
         }
 
         Vector2 direction = new Vector2(inputX, inputY);
@@ -67,26 +64,9 @@ public class Enemy : MonoBehaviour
 
     }
 
-    void HandlePlaceBomb()
-    {
-        if (Input.GetKeyDown(placeBomb))
-        {
-            Vector3 bombPosition = transform.position;
-            bombPosition = new Vector3(Mathf.Round(bombPosition.x), Mathf.Round(bombPosition.y), 0f);
-            Instantiate(bombPrefab, bombPosition, Quaternion.identity);
-        }
-    }
-
-    public void ReloadScene()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-
-    }
-
     // Update is called once per frame
     void Update()
     {
         HandleMovement();
-        HandlePlaceBomb();
     }
 }
