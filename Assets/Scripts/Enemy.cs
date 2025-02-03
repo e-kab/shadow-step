@@ -6,6 +6,10 @@ public class Enemy : MonoBehaviour
     public float speed = 5;
     Rigidbody2D rb2d;
     SpriteRenderer spriteRenderer;
+    private LineRenderer flashlight; // Flashlight visual
+    public float flashlightLength = 1f; // Max length of the flashlight beam
+
+
 
     // Idle frames
     public Sprite upIdle;
@@ -38,6 +42,15 @@ public class Enemy : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
+        // Add a LineRenderer component if not already attached
+        flashlight = gameObject.AddComponent<LineRenderer>();
+        flashlight.startWidth = 0.05f; // Thin beam
+        flashlight.endWidth = 0.05f;
+        flashlight.positionCount = 2; // Start and end points
+        flashlight.material = new Material(Shader.Find("Sprites/Default")); // Use basic sprite shader
+        flashlight.startColor = Color.yellow;
+        flashlight.endColor = new Color(1f, 1f, 0f, 0.5f); // Fades slightly
+
         movementCoroutine = StartCoroutine(NPCMovementRoutine());  // Start movement routine
 
         frameTimer = (1f / framesPerSecond);
@@ -60,15 +73,22 @@ public class Enemy : MonoBehaviour
 
     void HandleFlashlight(Vector2 direction)
     {
+
         Vector3 origin = transform.position;
+        Vector3 endPoint = origin + (Vector3)direction * flashlightLength;
+
         RaycastHit2D hit = new RaycastHit2D();
 
-        hit = Physics2D.Raycast(origin, direction, 1f, LayerMask.GetMask("Player"));
+        hit = Physics2D.Raycast(origin, direction, flashlightLength, ~LayerMask.GetMask("Enemy"));
 
         if (hit .collider != null)
         {
-            Debug.Log("Player Spotted");
+            endPoint = hit.point; // Shrink flashlight if it hits something
         }
+
+        // Update LineRenderer
+        flashlight.SetPosition(0, origin);   // Start at enemy's position
+        flashlight.SetPosition(1, endPoint); // End at raycast hit or max range
 
     }
 
@@ -192,7 +212,7 @@ public class Enemy : MonoBehaviour
             hit = Physics2D.Raycast(origin, Vector2.down, 0.55f, ignoreLayers);
 
         }
-        else if (direction == Vector2.left)
+        else if (direction == Vector2.left) 
         {
             hit = Physics2D.Raycast(origin, Vector2.left, 0.5f, ignoreLayers);
         }
