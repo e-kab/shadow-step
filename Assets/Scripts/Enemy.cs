@@ -14,10 +14,19 @@ public class Enemy : MonoBehaviour
     public KeyCode inputDown = KeyCode.DownArrow;
     public KeyCode placeBomb = KeyCode.LeftShift;
 
+
+    // Idle frames
     public Sprite upIdle;
     public Sprite downIdle;
     public Sprite leftIdle;
     public Sprite rightIdle;
+
+    // Walking animation frames
+    public Sprite[] upFrames;
+    public Sprite[] downFrames;
+    public Sprite[] leftFrames;
+    public Sprite[] rightFrames;
+    
 
 
     void HandleMovement()
