@@ -43,7 +43,7 @@ public class Enemy : MonoBehaviour
         frameTimer = (1f / framesPerSecond);
         currentFrameIndex = 0;
 
-        Invoke("Die", 5f); // For testing: will call Death() after 5 seconds
+        //Invoke("Die", 5f); // For testing: will call Death() after 5 seconds
     }
 
     void Update()
