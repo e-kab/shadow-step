@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UIElements;
 
 public class Enemy : MonoBehaviour
 {
@@ -53,6 +54,7 @@ public class Enemy : MonoBehaviour
 
     Vector2 GetRandomDirection()
     {
+
         int rand = Random.Range(0, 4);
         switch (rand)
         {
@@ -76,6 +78,63 @@ public class Enemy : MonoBehaviour
         else
         {
             spriteRenderer.sprite = GetIdleSprite(lastDirection);
+        }
+    }
+
+    void Detect()
+    {
+        // Right Hit Detection
+        Vector3 origin = transform.position;
+        Vector3 rightBlast = transform.position + (new Vector3(1, 0, 0));
+        Vector3 rightDirection = (rightBlast - origin).normalized;
+        float rightDistance = Vector3.Distance(origin, rightBlast);
+
+        RaycastHit2D rightHit = Physics2D.Raycast(origin, rightDirection, rightDistance);
+
+
+        // Left Hit Detection
+        Vector3 leftBlast = transform.position - (new Vector3(1, 0, 0));
+        Vector3 leftDirection = (leftBlast - origin).normalized;
+        float leftDistance = Vector3.Distance(origin, leftBlast);
+
+        RaycastHit2D leftHit = Physics2D.Raycast(origin, leftDirection, leftDistance);
+
+        // Up Hit Detection
+        Vector3 upBlast = transform.position + (new Vector3(0, 1, 0));
+        Vector3 upDirection = (upBlast - origin).normalized;
+        float upDistance = Vector3.Distance(origin, upBlast);
+
+        RaycastHit2D upHit = Physics2D.Raycast(origin, upDirection, upDistance);
+
+        // Down Hit Detection
+        Vector3 downBlast = transform.position - (new Vector3(0, 1, 0));
+        Vector3 downDirection = (downBlast - origin).normalized;
+        float downDistance = Vector3.Distance(origin, downBlast);
+
+        RaycastHit2D downHit = Physics2D.Raycast(origin, downDirection, downDistance);
+
+        if (rightHit.collider != null)
+        {
+            Debug.Log("Right Side Hit");
+
+        }
+
+        if (leftHit.collider != null)
+        {
+            Debug.Log("Left Side Hit");
+
+        }
+
+        if (upHit.collider != null)
+        {
+            Debug.Log("Up Side Hit");
+            
+        }
+
+        if (downHit.collider != null)
+        {
+            Debug.Log("Down Side Hit");
+            
         }
     }
 
