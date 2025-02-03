@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UIElements;
+using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 public class Enemy : MonoBehaviour
 {
@@ -19,7 +20,11 @@ public class Enemy : MonoBehaviour
     public Sprite[] downFrames;
     public Sprite[] leftFrames;
     public Sprite[] rightFrames;
+    
+    
     public float framesPerSecond = 5;
+    int currentFrameIndex = 0;
+    float frameTimer;
 
     public Sprite[] deathFrames;
 
@@ -31,11 +36,33 @@ public class Enemy : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         StartCoroutine(NPCMovementRoutine());
+
+        frameTimer = (1f / framesPerSecond);
+        currentFrameIndex = 0;
     }
 
     void Update()
     {
         HandleAnimation();
+        // Update frame timer for death animation
+        if (currentFrameIndex < deathFrames.Length)
+        {
+            frameTimer -= Time.deltaTime; // Decrease the timer each frame
+            if (frameTimer <= 0f)
+            {
+                currentFrameIndex++; // Move to the next frame
+                if (currentFrameIndex < deathFrames.Length)
+                {
+                    frameTimer = (1f / framesPerSecond); // Reset timer for the next frame
+                    spriteRenderer.sprite = deathFrames[currentFrameIndex];
+                }
+                else
+                {
+                    // All frames have been played, destroy the enemy
+                    Destroy(gameObject);
+                }
+            }
+        }
     }
 
     IEnumerator NPCMovementRoutine()
@@ -56,6 +83,7 @@ public class Enemy : MonoBehaviour
                 if (!IsPathClear(movementDirection))
                 {
                     movementDirection = Vector2.zero;
+                    Death();
                     break; // Stop moving if path is blocked
                 }
                 timeElapsed += Time.deltaTime;
@@ -206,9 +234,17 @@ public class Enemy : MonoBehaviour
         // Return true if no obstacle was hit
         return (hit.collider == null);
     }
-
     public void Death()
     {
-
+        if (currentFrameIndex < deathFrames.Length)
+        {
+            spriteRenderer.sprite = deathFrames[currentFrameIndex];
+            frameTimer = (1f / framesPerSecond); // Set the timer for the next frame
+        }
+        else
+        {
+            // In case Death is called after all frames are played
+            Destroy(gameObject);
+        }
     }
 }
