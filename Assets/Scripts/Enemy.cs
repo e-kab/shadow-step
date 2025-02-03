@@ -58,6 +58,11 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    void HandleFlashlight()
+    {
+
+    }
+
     IEnumerator NPCMovementRoutine()
     {
         while (!isDead)
