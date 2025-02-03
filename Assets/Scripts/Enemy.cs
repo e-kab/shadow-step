@@ -42,6 +42,10 @@ public class Enemy : MonoBehaviour
         {
             // Pick a random direction (up, down, left, right)
             movementDirection = GetRandomDirection();
+            while (!IsPathClear(movementDirection))
+            {
+                movementDirection = GetRandomDirection(); // Pick a new direction if blocked
+            }
 
             // Move for 2 seconds if the path is clear
             float timeElapsed = 0f;
