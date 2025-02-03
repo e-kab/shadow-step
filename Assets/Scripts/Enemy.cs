@@ -39,30 +39,13 @@ public class Enemy : MonoBehaviour
 
         frameTimer = (1f / framesPerSecond);
         currentFrameIndex = 0;
+        Invoke("Death", 2f);
     }
 
     void Update()
     {
         HandleAnimation();
-        // Update frame timer for death animation
-        if (currentFrameIndex < deathFrames.Length)
-        {
-            frameTimer -= Time.deltaTime; // Decrease the timer each frame
-            if (frameTimer <= 0f)
-            {
-                currentFrameIndex++; // Move to the next frame
-                if (currentFrameIndex < deathFrames.Length)
-                {
-                    frameTimer = (1f / framesPerSecond); // Reset timer for the next frame
-                    spriteRenderer.sprite = deathFrames[currentFrameIndex];
-                }
-                else
-                {
-                    // All frames have been played, destroy the enemy
-                    Destroy(gameObject);
-                }
-            }
-        }
+
     }
 
     IEnumerator NPCMovementRoutine()
