@@ -34,24 +34,38 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         HandleAnimation();
-        Detect();
     }
 
     IEnumerator NPCMovementRoutine()
     {
         while (true)
         {
-            // Pick a random direction (up, down, left, right, or stop)
+            // Pick a random direction (up, down, left, right)
             movementDirection = GetRandomDirection();
+            while (!IsPathClear(movementDirection))
+            {
+                movementDirection = GetRandomDirection(); // Pick a new direction if blocked
+            }
 
-            // Move for 2 seconds
-            yield return new WaitForSeconds(2f);
+            // Move for 2 seconds if the path is clear
+            float timeElapsed = 0f;
+            while (timeElapsed < 2f)
+            {
+                if (!IsPathClear(movementDirection))
+                {
+                    movementDirection = Vector2.zero;
+                    break; // Stop moving if path is blocked
+                }
+                timeElapsed += Time.deltaTime;
+                yield return null;
+            }
 
             // Stop moving for 2 seconds (idle)
             movementDirection = Vector2.zero;
             yield return new WaitForSeconds(2f);
         }
     }
+
 
     Vector2 GetRandomDirection()
     {
@@ -164,5 +178,30 @@ public class Enemy : MonoBehaviour
         if (direction == Vector2.left)
             return leftIdle;
         return rightIdle;
+    }
+
+    bool IsPathClear(Vector2 direction)
+    {
+        Vector3 origin = transform.position;
+        RaycastHit2D hit = new RaycastHit2D();
+
+        if (direction == Vector2.up)
+        {
+            hit = Physics2D.Raycast(origin, Vector2.up, 0.55f, ~LayerMask.GetMask("Enemy"));
+
+        } else if (direction == Vector2.down)
+        {
+            hit = Physics2D.Raycast(origin, Vector2.down, 0.55f, ~LayerMask.GetMask("Enemy"));
+
+        } else if (direction == Vector2.left)
+        {
+            hit = Physics2D.Raycast(origin, Vector2.left, 0.5f, ~LayerMask.GetMask("Enemy"));
+        } else if(direction == Vector2.right)
+        {
+            hit = Physics2D.Raycast(origin, Vector2.right, 0.5f, ~LayerMask.GetMask("Enemy"));
+        }
+
+        // Return true if no obstacle was hit
+        return (hit.collider == null);
     }
 }
