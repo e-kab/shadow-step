@@ -90,7 +90,7 @@ public class Enemy : MonoBehaviour
         Vector3 rightDirection = (rightBlast - origin).normalized;
         float rightDistance = Vector3.Distance(origin, rightBlast);
 
-        RaycastHit2D rightHit = Physics2D.Raycast(origin, rightDirection, rightDistance);
+        RaycastHit2D rightHit = Physics2D.Raycast(origin, rightDirection, rightDistance, ~LayerMask.GetMask("Enemy"));
 
 
         // Left Hit Detection
@@ -98,21 +98,21 @@ public class Enemy : MonoBehaviour
         Vector3 leftDirection = (leftBlast - origin).normalized;
         float leftDistance = Vector3.Distance(origin, leftBlast);
 
-        RaycastHit2D leftHit = Physics2D.Raycast(origin, leftDirection, leftDistance);
+        RaycastHit2D leftHit = Physics2D.Raycast(origin, leftDirection, leftDistance, ~LayerMask.GetMask("Enemy"));
 
         // Up Hit Detection
         Vector3 upBlast = transform.position + (new Vector3(0, 1, 0));
         Vector3 upDirection = (upBlast - origin).normalized;
         float upDistance = Vector3.Distance(origin, upBlast);
 
-        RaycastHit2D upHit = Physics2D.Raycast(origin, upDirection, upDistance);
+        RaycastHit2D upHit = Physics2D.Raycast(origin, upDirection, upDistance, ~LayerMask.GetMask("Enemy"));
 
         // Down Hit Detection
         Vector3 downBlast = transform.position - (new Vector3(0, 1, 0));
         Vector3 downDirection = (downBlast - origin).normalized;
         float downDistance = Vector3.Distance(origin, downBlast);
 
-        RaycastHit2D downHit = Physics2D.Raycast(origin, downDirection, downDistance);
+        RaycastHit2D downHit = Physics2D.Raycast(origin, downDirection, downDistance, ~LayerMask.GetMask("Enemy"));
 
         if (rightHit.collider != null)
         {

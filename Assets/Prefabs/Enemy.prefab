@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1588665652509977854}
   - component: {fileID: 1387670831546924258}
   - component: {fileID: 6327908465761791742}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,3 +100,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5e41086d81380c4eb552fbe0eef4cf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 5
+  upIdle: {fileID: 0}
+  downIdle: {fileID: 0}
+  leftIdle: {fileID: 0}
+  rightIdle: {fileID: 0}
+  upFrames: []
+  downFrames: []
+  leftFrames: []
+  rightFrames: []
+  framesPerSecond: 5
