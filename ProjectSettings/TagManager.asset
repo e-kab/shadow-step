@@ -44,6 +44,9 @@ TagManager:
   - name: Brick
     uniqueID: 646616643
     locked: 0
+  - name: Button
+    uniqueID: 1913543465
+    locked: 0
   - name: Box
     uniqueID: 163186115
     locked: 0

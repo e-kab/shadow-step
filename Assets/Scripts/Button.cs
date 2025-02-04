@@ -1,15 +1,14 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Win : MonoBehaviour
+public class Button : MonoBehaviour
 {
-
-    public Button buttonScript; // Reference to the Button script
+    public bool buttonHit = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -17,26 +16,15 @@ public class Win : MonoBehaviour
     {
         
     }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision != null)
         {
             if (collision.GetComponent<Player>() != null)
             {
-
-                if (buttonScript.buttonHit)
-                {
-                    ResetGame();
-                }
+                Debug.Log("button hit");
+                buttonHit = true;
             }
         }
-    }
-
-
-    private void ResetGame()
-    {
-        // Reset the game or load the scene again
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
