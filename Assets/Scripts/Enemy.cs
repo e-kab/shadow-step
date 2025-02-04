@@ -252,6 +252,10 @@ public class Enemy : MonoBehaviour
             {
                 StopCoroutine(movementCoroutine);
             }
+            if (flashlight.enabled)
+            {
+                flashlight.enabled = false;
+            }
 
         }
     }
