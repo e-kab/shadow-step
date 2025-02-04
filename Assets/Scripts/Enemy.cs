@@ -6,8 +6,14 @@ public class Enemy : MonoBehaviour
     public float speed = 5;
     Rigidbody2D rb2d;
     SpriteRenderer spriteRenderer;
+
+    // Flashlight
     private LineRenderer flashlight; // Flashlight visual
-    public float flashlightLength = 1f; // Max length of the flashlight beam
+    public Color flashlightStartColor = Color.red;
+    public Color flashlightEndColor = new Color(1f, 1f, 0f, 0.5f);
+    public float flashlightStartWidth = 0.5f;
+    public float flashlightEndWidth = 0.8f;
+    public float flashlightLength = 1f;
 
 
 
@@ -43,20 +49,25 @@ public class Enemy : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         // Add a LineRenderer component if not already attached
-        flashlight = gameObject.AddComponent<LineRenderer>();
-        flashlight.startWidth = 0.05f; // Thin beam
-        flashlight.endWidth = 0.5f;
+        flashlight = GetComponent<LineRenderer>();
         flashlight.positionCount = 2; // Start and end points
         flashlight.material = new Material(Shader.Find("Sprites/Default")); // Use basic sprite shader
-        flashlight.startColor = Color.red;
-        flashlight.endColor = new Color(1f, 1f, 0f, 0.5f); // Fades slightly
+
+        // Apply public properties
+        flashlight.startColor = flashlightStartColor;
+        flashlight.endColor = flashlightEndColor;
+        flashlight.startWidth = flashlightStartWidth;
+        flashlight.endWidth = flashlightEndWidth;
+
+        // Set flashlight to render behind the enemy sprite
+        flashlight.sortingLayerID = spriteRenderer.sortingLayerID; // Same layer as sprite
+        flashlight.sortingOrder = spriteRenderer.sortingOrder - 1; // Render below sprite
 
         movementCoroutine = StartCoroutine(NPCMovementRoutine());  // Start movement routine
-
         frameTimer = (1f / framesPerSecond);
         currentFrameIndex = 0;
-
     }
+
 
     void Update()
     {
