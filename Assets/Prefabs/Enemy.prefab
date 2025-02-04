@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5e41086d81380c4eb552fbe0eef4cf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 1.5
   flashlightStartColor: {r: 0.9725491, g: 0.427451, b: 0.427451, a: 1}
   flashlightEndColor: {r: 0.9725491, g: 0.427451, b: 0.427451, a: 0.5}
   flashlightStartWidth: 0.2
@@ -193,7 +193,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0

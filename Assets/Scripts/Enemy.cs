@@ -88,7 +88,7 @@ public class Enemy : MonoBehaviour
 
         RaycastHit2D hit = new RaycastHit2D();
 
-        hit = Physics2D.Raycast(origin, direction, flashlightLength, ~LayerMask.GetMask("Enemy"));
+        hit = Physics2D.Raycast(origin, direction, flashlightLength, ~LayerMask.GetMask("Enemy", "Button"));
 
         if (hit.collider != null)
         {
@@ -135,7 +135,7 @@ public class Enemy : MonoBehaviour
 
             // Stop moving for 2 seconds (idle)
             movementDirection = Vector2.zero;
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1f);
         }
     }
 
