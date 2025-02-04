@@ -41,5 +41,17 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Brick
+    uniqueID: 646616643
+    locked: 0
+  - name: Box
+    uniqueID: 163186115
+    locked: 0
+  - name: Enemy
+    uniqueID: 3123141667
+    locked: 0
+  - name: Flashlight
+    uniqueID: 1939948931
+    locked: 0
   m_RenderingLayers:
   - Default

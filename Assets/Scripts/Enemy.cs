@@ -59,7 +59,7 @@ public class Enemy : MonoBehaviour
 
         // Set flashlight to render behind the enemy sprite
         flashlight.sortingLayerID = spriteRenderer.sortingLayerID; // Same layer as sprite
-        flashlight.sortingOrder = spriteRenderer.sortingOrder - 1; // Render below sprite
+        flashlight.sortingOrder = spriteRenderer.sortingOrder - 1;
 
         movementCoroutine = StartCoroutine(NPCMovementRoutine());  // Start movement routine
         frameTimer = (1f / framesPerSecond);
