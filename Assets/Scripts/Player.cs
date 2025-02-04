@@ -119,4 +119,10 @@ public class Player : MonoBehaviour
             collision.GetComponent<Enemy>().Die();
         }
     }
+
+    public void ReloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+    }
 }

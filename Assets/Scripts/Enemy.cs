@@ -6,10 +6,14 @@ public class Enemy : MonoBehaviour
     public float speed = 5;
     Rigidbody2D rb2d;
     SpriteRenderer spriteRenderer;
+
+    // Flashlight
     private LineRenderer flashlight; // Flashlight visual
-    public float flashlightLength = 1f; // Max length of the flashlight beam
-
-
+    public Color flashlightStartColor;
+    public Color flashlightEndColor;
+    public float flashlightStartWidth;
+    public float flashlightEndWidth;
+    public float flashlightLength;
 
     // Idle frames
     public Sprite upIdle;
@@ -43,20 +47,25 @@ public class Enemy : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         // Add a LineRenderer component if not already attached
-        flashlight = gameObject.AddComponent<LineRenderer>();
-        flashlight.startWidth = 0.05f; // Thin beam
-        flashlight.endWidth = 0.05f;
+        flashlight = GetComponent<LineRenderer>();
         flashlight.positionCount = 2; // Start and end points
         flashlight.material = new Material(Shader.Find("Sprites/Default")); // Use basic sprite shader
-        flashlight.startColor = Color.yellow;
-        flashlight.endColor = new Color(1f, 1f, 0f, 0.5f); // Fades slightly
+
+        // Apply public properties
+        flashlight.startColor = flashlightStartColor;
+        flashlight.endColor = flashlightEndColor;
+        flashlight.startWidth = flashlightStartWidth;
+        flashlight.endWidth = flashlightEndWidth;
+
+        // Set flashlight to render behind the enemy sprite
+        flashlight.sortingLayerID = spriteRenderer.sortingLayerID; // Same layer as sprite
+        flashlight.sortingOrder = spriteRenderer.sortingOrder - 1; // Render below sprite
 
         movementCoroutine = StartCoroutine(NPCMovementRoutine());  // Start movement routine
-
         frameTimer = (1f / framesPerSecond);
         currentFrameIndex = 0;
-
     }
+
 
     void Update()
     {
@@ -81,10 +90,18 @@ public class Enemy : MonoBehaviour
 
         hit = Physics2D.Raycast(origin, direction, flashlightLength, ~LayerMask.GetMask("Enemy"));
 
-        if (hit .collider != null)
+        if (hit.collider != null)
         {
             endPoint = hit.point; // Shrink flashlight if it hits something
+            if (hit.collider.GetComponent<Player>() != null)
+            {
+                hit.collider.GetComponent<Player>().ReloadScene();
+            }
         }
+        
+        
+
+
 
         // Update LineRenderer
         flashlight.SetPosition(0, origin);   // Start at enemy's position
@@ -212,7 +229,7 @@ public class Enemy : MonoBehaviour
             hit = Physics2D.Raycast(origin, Vector2.down, 0.55f, ignoreLayers);
 
         }
-        else if (direction == Vector2.left) 
+        else if (direction == Vector2.left)
         {
             hit = Physics2D.Raycast(origin, Vector2.left, 0.5f, ignoreLayers);
         }
