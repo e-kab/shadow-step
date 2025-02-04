@@ -93,7 +93,15 @@ public class Enemy : MonoBehaviour
         if (hit.collider != null)
         {
             endPoint = hit.point; // Shrink flashlight if it hits something
+            if (hit.collider.GetComponent<Player>() != null)
+            {
+                hit.collider.GetComponent<Player>().ReloadScene();
+            }
         }
+        
+        
+
+
 
         // Update LineRenderer
         flashlight.SetPosition(0, origin);   // Start at enemy's position

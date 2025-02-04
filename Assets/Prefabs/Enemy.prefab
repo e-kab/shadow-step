@@ -108,7 +108,7 @@ MonoBehaviour:
   flashlightEndColor: {r: 0.9725491, g: 0.427451, b: 0.427451, a: 0.5}
   flashlightStartWidth: 0.2
   flashlightEndWidth: 0.6
-  flashlightLength: 1
+  flashlightLength: 1.6
   upIdle: {fileID: 3001531086428080705, guid: 312440b7884c50d41a9fd8140fec8cec, type: 3}
   downIdle: {fileID: 5976589151732120665, guid: 37ae7132f1a024a49b5349408999873e, type: 3}
   leftIdle: {fileID: -3088283760687266168, guid: 477ccc5f7df257f45a3ebdc219846be6, type: 3}
