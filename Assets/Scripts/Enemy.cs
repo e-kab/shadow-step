@@ -9,13 +9,11 @@ public class Enemy : MonoBehaviour
 
     // Flashlight
     private LineRenderer flashlight; // Flashlight visual
-    public Color flashlightStartColor = Color.red;
-    public Color flashlightEndColor = new Color(1f, 1f, 0f, 0.5f);
-    public float flashlightStartWidth = 0.5f;
-    public float flashlightEndWidth = 0.8f;
-    public float flashlightLength = 1f;
-
-
+    public Color flashlightStartColor;
+    public Color flashlightEndColor;
+    public float flashlightStartWidth;
+    public float flashlightEndWidth;
+    public float flashlightLength;
 
     // Idle frames
     public Sprite upIdle;
