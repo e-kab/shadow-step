@@ -12364,6 +12364,10 @@ PrefabInstance:
       propertyPath: buttonScript
       value: 
       objectReference: {fileID: 1397153873}
+    - target: {fileID: -456866475715774336, guid: 8bde858089fc25f4ab851dc5da96ab99, type: 3}
+      propertyPath: playerScript
+      value: 
+      objectReference: {fileID: 1509140833}
     - target: {fileID: 1351011627583905593, guid: 8bde858089fc25f4ab851dc5da96ab99, type: 3}
       propertyPath: m_Name
       value: Win Condition
@@ -18496,6 +18500,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c3e1f122d951b34b9a9fae59b4e0754, type: 3}
+--- !u!114 &1509140833 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3801133219298061417, guid: 29b5a698b4e804f49acc45284eb024b1, type: 3}
+  m_PrefabInstance: {fileID: 1704503392}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed71d9dd787eec644811cb1bc3483dd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1512631611
 PrefabInstance:
   m_ObjectHideFlags: 0
