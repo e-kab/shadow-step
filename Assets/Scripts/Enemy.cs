@@ -250,6 +250,7 @@ public class Enemy : MonoBehaviour
             // Stop movement and animation routines
             if (movementCoroutine != null)
             {
+                rb2d.linearVelocity = Vector2.zero;
                 StopCoroutine(movementCoroutine);
             }
             if (flashlight.enabled)
