@@ -1,9 +1,11 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
+
 
 public class Win : MonoBehaviour
 {
-
+    public Player playerScript;
     public Button buttonScript; // Reference to the Button script
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -27,16 +29,21 @@ public class Win : MonoBehaviour
 
                 if (buttonScript.buttonHit)
                 {
-                    ResetGame();
+                    playerScript.Win();
+                    ReloadScene();
                 }
             }
         }
     }
-
-
-    private void ResetGame()
+    public void ReloadScene()
     {
-        // Reset the game or load the scene again
+        StartCoroutine(ReloadAfterDelay(5f));
+    }
+
+
+    IEnumerator ReloadAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
