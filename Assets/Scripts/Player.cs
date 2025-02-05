@@ -43,6 +43,11 @@ public class Player : MonoBehaviour
         {
             deathPrefab.SetActive(false);
         }
+
+        if (winPrefab != null)
+        {
+            winPrefab.SetActive(false);
+        }
     }
 
     void Update()
@@ -158,5 +163,13 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void Win()
+    {
+        if (winPrefab != null)
+        {
+            winPrefab.SetActive(true);
+        }
     }
 }
