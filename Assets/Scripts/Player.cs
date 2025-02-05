@@ -137,6 +137,7 @@ public class Player : MonoBehaviour
     {
         // Enable the death text if it's assigned
         isDead = true;
+        rb2d.linearVelocity = Vector2.zero;
         if (textPrefab != null)
         {
             textPrefab.SetActive(true);

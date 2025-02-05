@@ -56,5 +56,8 @@ TagManager:
   - name: Flashlight
     uniqueID: 1939948931
     locked: 0
+  - name: UI
+    uniqueID: 1851500975
+    locked: 0
   m_RenderingLayers:
   - Default
