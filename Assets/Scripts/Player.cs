@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class Player : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class Player : MonoBehaviour
     public Sprite leftIdle;
     public Sprite rightIdle;
 
+    public GameObject textPrefab;
+
     // Walking animation frames
     public Sprite[] upFrames;
     public Sprite[] downFrames;
@@ -27,16 +30,25 @@ public class Player : MonoBehaviour
     public float framesPerSecond = 5;
 
     private Vector2 lastDirection = Vector2.down;
+    private bool isDead = false;
 
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        if (textPrefab != null)
+        {
+            textPrefab.SetActive(false);
+        }
     }
 
     void Update()
     {
-        HandleMovement();
+        if (!isDead)
+        {
+            HandleMovement();
+        }
     }
 
     void HandleMovement()
@@ -120,9 +132,28 @@ public class Player : MonoBehaviour
         }
     }
 
+    // Handle player death
+    public void Die()
+    {
+        // Enable the death text if it's assigned
+        isDead = true;
+        if (textPrefab != null)
+        {
+            textPrefab.SetActive(true);
+        }
+
+        // Start scene reload after 5 seconds
+        StartCoroutine(ReloadAfterDelay(5f));
+    }
+
     public void ReloadScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        StartCoroutine(ReloadAfterDelay(5f));
+    }
 
+    IEnumerator ReloadAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

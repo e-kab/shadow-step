@@ -95,7 +95,7 @@ public class Enemy : MonoBehaviour
             endPoint = hit.point; // Shrink flashlight if it hits something
             if (hit.collider.GetComponent<Player>() != null)
             {
-                hit.collider.GetComponent<Player>().ReloadScene();
+                hit.collider.GetComponent<Player>().Die();
             }
         }
         
