@@ -20,7 +20,9 @@ public class Player : MonoBehaviour
     public Sprite leftIdle;
     public Sprite rightIdle;
 
-    public GameObject textPrefab;
+    public GameObject deathPrefab;
+    public GameObject winPrefab;
+
 
     // Walking animation frames
     public Sprite[] upFrames;
@@ -37,9 +39,9 @@ public class Player : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        if (textPrefab != null)
+        if (deathPrefab != null)
         {
-            textPrefab.SetActive(false);
+            deathPrefab.SetActive(false);
         }
     }
 
@@ -134,13 +136,13 @@ public class Player : MonoBehaviour
 
     // Handle player death
     public void Die()
-    {
+    {   
         // Enable the death text if it's assigned
         isDead = true;
         rb2d.linearVelocity = Vector2.zero;
-        if (textPrefab != null)
+        if (deathPrefab != null)
         {
-            textPrefab.SetActive(true);
+            deathPrefab.SetActive(true);
         }
 
         // Start scene reload after 5 seconds
