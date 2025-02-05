@@ -151,7 +151,7 @@ public class Player : MonoBehaviour
         }
 
         // Start scene reload after 5 seconds
-        StartCoroutine(ReloadAfterDelay(5f));
+        StartCoroutine(ReloadAfterDelay(2f));
     }
 
     public void ReloadScene()

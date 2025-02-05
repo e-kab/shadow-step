@@ -37,7 +37,7 @@ public class Win : MonoBehaviour
     }
     public void ReloadScene()
     {
-        StartCoroutine(ReloadAfterDelay(5f));
+        StartCoroutine(ReloadAfterDelay(2f));
     }
 
 
