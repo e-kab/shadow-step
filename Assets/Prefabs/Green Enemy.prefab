@@ -73,6 +73,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -454666794543077094, guid: fabe11c9fd05846418a1048b17a90786, type: 3}
     - target: {fileID: 6327908465761791742, guid: 9a8fcc5e037a205449ead16a6d9bb7e2, type: 3}
+      propertyPath: flashlightEndColor.g
+      value: 0.5137255
+      objectReference: {fileID: 0}
+    - target: {fileID: 6327908465761791742, guid: 9a8fcc5e037a205449ead16a6d9bb7e2, type: 3}
+      propertyPath: flashlightStartColor.g
+      value: 0.5137255
+      objectReference: {fileID: 0}
+    - target: {fileID: 6327908465761791742, guid: 9a8fcc5e037a205449ead16a6d9bb7e2, type: 3}
       propertyPath: 'upFrames.Array.data[0]'
       value: 
       objectReference: {fileID: -5348489239988064724, guid: 04142a9366515c845a469a8066c83995, type: 3}
