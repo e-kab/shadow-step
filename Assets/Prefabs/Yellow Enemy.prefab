@@ -10,8 +10,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 112015515788670794, guid: 9a8fcc5e037a205449ead16a6d9bb7e2, type: 3}
       propertyPath: m_Name
-      value: Blue Enemy
+      value: Yellow Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 1387670831546924258, guid: 9a8fcc5e037a205449ead16a6d9bb7e2, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1720173420806056421, guid: 100d7a28d7638c74e8adaa9d3de2e7fc, type: 3}
     - target: {fileID: 1588665652509977854, guid: 9a8fcc5e037a205449ead16a6d9bb7e2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -55,7 +59,95 @@ PrefabInstance:
     - target: {fileID: 6327908465761791742, guid: 9a8fcc5e037a205449ead16a6d9bb7e2, type: 3}
       propertyPath: upIdle
       value: 
-      objectReference: {fileID: -7308402434989261168, guid: 1cb22901f9e8d754ba71f7e749bcdc3e, type: 3}
+      objectReference: {fileID: -2211574474053947364, guid: a75b80eaca73a9242aa4b0b2e32a1de4, type: 3}
+    - target: {fileID: 6327908465761791742, guid: 9a8fcc5e037a205449ead16a6d9bb7e2, type: 3}
+      propertyPath: downIdle
+      value: 
+      objectReference: {fileID: 1720173420806056421, guid: 100d7a28d7638c74e8adaa9d3de2e7fc, type: 3}
+    - target: {fileID: 6327908465761791742, guid: 9a8fcc5e037a205449ead16a6d9bb7e2, type: 3}
+      propertyPath: leftIdle
+      value: 
+      objectReference: {fileID: -411800007931775844, guid: 1db12a67fe68aa84dbea88f2d6ccb642, type: 3}
+    - target: {fileID: 6327908465761791742, guid: 9a8fcc5e037a205449ead16a6d9bb7e2, type: 3}
+      propertyPath: rightIdle
+      value: 
+      objectReference: {fileID: -8054188138591160369, guid: 97fba32eb3c4a764a96084ece204397a, type: 3}
+    - target: {fileID: 6327908465761791742, guid: 9a8fcc5e037a205449ead16a6d9bb7e2, type: 3}
+      propertyPath: flashlightEndColor.g
+      value: 0.5137255
+      objectReference: {fileID: 0}
+    - target: {fileID: 6327908465761791742, guid: 9a8fcc5e037a205449ead16a6d9bb7e2, type: 3}
+      propertyPath: flashlightStartColor.g
+      value: 0.5137255
+      objectReference: {fileID: 0}
+    - target: {fileID: 6327908465761791742, guid: 9a8fcc5e037a205449ead16a6d9bb7e2, type: 3}
+      propertyPath: 'upFrames.Array.data[0]'
+      value: 
+      objectReference: {fileID: -9046649266556844097, guid: ab053dfab4cc3b6408f75afd2c56d42f, type: 3}
+    - target: {fileID: 6327908465761791742, guid: 9a8fcc5e037a205449ead16a6d9bb7e2, type: 3}
+      propertyPath: 'upFrames.Array.data[1]'
+      value: 
+      objectReference: {fileID: 4412284360829353749, guid: 79f894a0e691f2743b3c888a37784aef, type: 3}
+    - target: {fileID: 6327908465761791742, guid: 9a8fcc5e037a205449ead16a6d9bb7e2, type: 3}
+      propertyPath: 'downFrames.Array.data[0]'
+      value: 
+      objectReference: {fileID: 4241355879701764746, guid: 51f5a3c3f7020514f94e62f7df4f3816, type: 3}
+    - target: {fileID: 6327908465761791742, guid: 9a8fcc5e037a205449ead16a6d9bb7e2, type: 3}
+      propertyPath: 'downFrames.Array.data[1]'
+      value: 
+      objectReference: {fileID: -7310696502239042976, guid: 654cbb452e24b8f47a86b5a95c2d70de, type: 3}
+    - target: {fileID: 6327908465761791742, guid: 9a8fcc5e037a205449ead16a6d9bb7e2, type: 3}
+      propertyPath: 'leftFrames.Array.data[0]'
+      value: 
+      objectReference: {fileID: -5421056965917574160, guid: a22b45eddbeeb1941b8a17148d9de24a, type: 3}
+    - target: {fileID: 6327908465761791742, guid: 9a8fcc5e037a205449ead16a6d9bb7e2, type: 3}
+      propertyPath: 'leftFrames.Array.data[1]'
+      value: 
+      objectReference: {fileID: 6545627969826236846, guid: a3b0ca8832608cf4586ad7306872e9b2, type: 3}
+    - target: {fileID: 6327908465761791742, guid: 9a8fcc5e037a205449ead16a6d9bb7e2, type: 3}
+      propertyPath: 'leftFrames.Array.data[2]'
+      value: 
+      objectReference: {fileID: -1525545689637488745, guid: 09815af2907bfe845af2445079b45a94, type: 3}
+    - target: {fileID: 6327908465761791742, guid: 9a8fcc5e037a205449ead16a6d9bb7e2, type: 3}
+      propertyPath: 'deathFrames.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8431576734122428189, guid: b5e0da70836e9ce42961e3352e891b59, type: 3}
+    - target: {fileID: 6327908465761791742, guid: 9a8fcc5e037a205449ead16a6d9bb7e2, type: 3}
+      propertyPath: 'deathFrames.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8350333767735052411, guid: 70c625af73e8f9e44b2db14cbeeceb12, type: 3}
+    - target: {fileID: 6327908465761791742, guid: 9a8fcc5e037a205449ead16a6d9bb7e2, type: 3}
+      propertyPath: 'deathFrames.Array.data[2]'
+      value: 
+      objectReference: {fileID: 6567642934974607556, guid: 9e440d70a0da94f47819b5a2c390864e, type: 3}
+    - target: {fileID: 6327908465761791742, guid: 9a8fcc5e037a205449ead16a6d9bb7e2, type: 3}
+      propertyPath: 'deathFrames.Array.data[3]'
+      value: 
+      objectReference: {fileID: 3645938649042037481, guid: 4812c527d2aee6446b9ea50d755a2230, type: 3}
+    - target: {fileID: 6327908465761791742, guid: 9a8fcc5e037a205449ead16a6d9bb7e2, type: 3}
+      propertyPath: 'deathFrames.Array.data[4]'
+      value: 
+      objectReference: {fileID: 6696233846697809246, guid: cea62e1d2cfc4e34ea7e7386f61529ca, type: 3}
+    - target: {fileID: 6327908465761791742, guid: 9a8fcc5e037a205449ead16a6d9bb7e2, type: 3}
+      propertyPath: 'deathFrames.Array.data[5]'
+      value: 
+      objectReference: {fileID: -2723724646391121577, guid: f425173a8bf200844b6d7658f1b77b30, type: 3}
+    - target: {fileID: 6327908465761791742, guid: 9a8fcc5e037a205449ead16a6d9bb7e2, type: 3}
+      propertyPath: 'deathFrames.Array.data[6]'
+      value: 
+      objectReference: {fileID: 7042739359302248600, guid: 132652c07a7bd7347ad198041283fd90, type: 3}
+    - target: {fileID: 6327908465761791742, guid: 9a8fcc5e037a205449ead16a6d9bb7e2, type: 3}
+      propertyPath: 'rightFrames.Array.data[0]'
+      value: 
+      objectReference: {fileID: -2985723371231521580, guid: cb208900037761447b4960fd010dd32d, type: 3}
+    - target: {fileID: 6327908465761791742, guid: 9a8fcc5e037a205449ead16a6d9bb7e2, type: 3}
+      propertyPath: 'rightFrames.Array.data[1]'
+      value: 
+      objectReference: {fileID: -8001429150811832707, guid: 03b482b17f0ed8a45a10f1ca51081f90, type: 3}
+    - target: {fileID: 6327908465761791742, guid: 9a8fcc5e037a205449ead16a6d9bb7e2, type: 3}
+      propertyPath: 'rightFrames.Array.data[2]'
+      value: 
+      objectReference: {fileID: -6534338286429799332, guid: 8826c6e5450c481438372b051282fec4, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
