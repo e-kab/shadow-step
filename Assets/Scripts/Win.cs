@@ -2,48 +2,35 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
-
 public class Win : MonoBehaviour
 {
     public Player playerScript;
     public Button buttonScript; // Reference to the Button script
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision != null)
+        if (collision != null && collision.GetComponent<Player>() != null)
         {
-            if (collision.GetComponent<Player>() != null)
+            if (buttonScript.buttonHit)
             {
-
-                if (buttonScript.buttonHit)
-                {
-                    playerScript.Win();
-                    ReloadScene();
-                }
+                playerScript.Win();
+                LoadNextScene();
             }
         }
     }
-    public void ReloadScene()
+
+    void LoadNextScene()
     {
-        StartCoroutine(ReloadAfterDelay(2f));
+        StartCoroutine(LoadNextSceneAfterDelay(2f));
     }
 
-
-    IEnumerator ReloadAfterDelay(float delay)
+    IEnumerator LoadNextSceneAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        int nextSceneIndex = (currentSceneIndex + 1) % SceneManager.sceneCountInBuildSettings;
+
+        SceneManager.LoadScene(nextSceneIndex);
     }
 }
